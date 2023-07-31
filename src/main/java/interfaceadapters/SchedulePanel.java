@@ -1,7 +1,5 @@
 package interfaceadapters;
 
-import interfaceadapters.ShiftChangeScreen;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -13,6 +11,8 @@ public class SchedulePanel extends JPanel implements ActionListener {
 
     final String[] COLUMNS = {"SHIFT", "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"};
     String[][] data;
+    static JTable table;
+    static JFrame newFrame = new JFrame();
 
     public SchedulePanel(String[][] data) {
 
@@ -30,7 +30,7 @@ public class SchedulePanel extends JPanel implements ActionListener {
 
         //Table
         this.data = data;
-        final JTable table = new JTable(data, COLUMNS) {
+        table = new JTable(data, COLUMNS) {
             @Override
             public boolean isCellEditable(int row, int column) {
                 return false;
@@ -59,9 +59,9 @@ public class SchedulePanel extends JPanel implements ActionListener {
                     System.out.println(row + " and " + column);
 
                     if (row >= 0 && column > 0) {
-                        ShiftChangeScreen shiftChangeScreen = new ShiftChangeScreen();
+                        ShiftChangeScreen shiftChangeScreen = new ShiftChangeScreen(row, column, data);
                         shiftChangeScreen.setOpaque(true);
-                        JFrame newFrame = new JFrame();
+//                        newFrame = new JFrame();
                         newFrame.setContentPane(shiftChangeScreen);
 
                         shiftChangeScreen.setPreferredSize(new Dimension(500, 200));
@@ -73,6 +73,11 @@ public class SchedulePanel extends JPanel implements ActionListener {
         });
         newShift.addActionListener(this);
         removeShift.addActionListener(this);
+    }
+
+    public static void deleteNewFrame(){
+        newFrame.dispose();
+        table.updateUI();
     }
 
     @Override
