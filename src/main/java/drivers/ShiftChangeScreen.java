@@ -1,4 +1,4 @@
-package interfaceadapters;
+package drivers;
 
 import javax.swing.*;
 import java.awt.*;

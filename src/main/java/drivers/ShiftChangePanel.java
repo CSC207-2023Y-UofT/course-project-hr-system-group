@@ -1,24 +1,25 @@
-package interfaceadapters;
+package drivers;
+
+import interfaceadapters.ScheduleController;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 class ShiftChangePanel extends JPanel implements ActionListener {
 
     JComboBox<String> employeeListBox;
-    int row;
-    int column;
+    int row, column;
     JButton confirmButton;
-    String[] employees;
     boolean add;
+    String[] selectionEmployees;
     String[][] data;
 
     public ShiftChangePanel(boolean add, int row, int column, String[][] data) {
 
         this.data = data;
-
         this.row = row;
         this.column = column;
         this.add = add;
@@ -28,14 +29,22 @@ class ShiftChangePanel extends JPanel implements ActionListener {
         title.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         //Combo Box and Button
-        if (add == true) {
-            employees = new String[]{"name1", "name2"};
+        if (add) {
+            ArrayList<String> allEmployeesID = ScheduleController.getAllEmployeesID();
+            String[] overlapEmployees = data[row][column].split(", ");
+            for (String employee : overlapEmployees) {
+                allEmployeesID.remove(employee);
+            }
+            selectionEmployees = new String[allEmployeesID.size()];
+            for (int i = 0; i < selectionEmployees.length; i++) {
+                selectionEmployees[i] = allEmployeesID.get(i);
+            }
             confirmButton = new JButton("Add Employee");
         } else {
-            employees = data[row][column].split(", ");
+            selectionEmployees = data[row][column].split(", ");
             confirmButton = new JButton("Remove Employee");
         }
-        employeeListBox = new JComboBox<String>(employees);
+        employeeListBox = new JComboBox<String>(selectionEmployees);
 
         JPanel buttons = new JPanel();
         buttons.add(confirmButton);
@@ -66,22 +75,29 @@ class ShiftChangePanel extends JPanel implements ActionListener {
 
             ScheduleController.modifyShift(command, dayIndex, shiftIndex, employee);
 
-            this.data[shiftIndex][this.column] = updateData(employee, shift);
+            this.data[shiftIndex][this.column] = updateData(command, employee, shift);
 
             SchedulePanel.deleteNewFrame();
         }
     }
 
-    public String updateData(String employee, String shift) {
-        String deletionTarget = employee;
-        if (shift.contains(employee + ", ")) {
-            deletionTarget = employee + ", ";
-        } else if (shift.contains(", " + employee)) {
-            deletionTarget = ", " + employee;
-        }
+    public String updateData(String command, String employee, String shift) {
+        switch(command) {
+            case "Remove Employee":
+                String deletionTarget = employee;
+                if (shift.contains(employee + ", ")) {
+                    deletionTarget = employee + ", ";
+                } else if (shift.contains(", " + employee)) {
+                    deletionTarget = ", " + employee;
+                }
 
-        shift = shift.replace(deletionTarget, "");
-        return shift;
+                shift = shift.replace(deletionTarget, "");
+                return shift;
+            case "Add Employee":
+                return shift + ", " + employee;
+            default:
+                return "";
+        }
     }
 
 }

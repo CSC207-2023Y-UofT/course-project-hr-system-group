@@ -22,8 +22,10 @@ public class Shift<Employee> {
         return this.employees;
     }
 
-    public void addEmployee(String employee) {
-        this.employees.add(employee);
+    public void addEmployee(int dayIndex, String employee) {
+        String day = this.employees.get(dayIndex);
+        day += ", " + employee;
+        employees.set(dayIndex, day);
     }
 
     public void removeEmployee(int dayIndex, String employee) {

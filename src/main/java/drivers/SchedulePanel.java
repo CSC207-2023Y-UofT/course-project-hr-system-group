@@ -1,4 +1,4 @@
-package interfaceadapters;
+package drivers;
 
 import javax.swing.*;
 import java.awt.*;
@@ -61,7 +61,6 @@ public class SchedulePanel extends JPanel implements ActionListener {
                     if (row >= 0 && column > 0) {
                         ShiftChangeScreen shiftChangeScreen = new ShiftChangeScreen(row, column, data);
                         shiftChangeScreen.setOpaque(true);
-//                        newFrame = new JFrame();
                         newFrame.setContentPane(shiftChangeScreen);
 
                         shiftChangeScreen.setPreferredSize(new Dimension(500, 200));
