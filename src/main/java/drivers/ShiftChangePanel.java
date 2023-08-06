@@ -65,7 +65,6 @@ class ShiftChangePanel extends JPanel implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == confirmButton) {
-            System.out.println(employeeListBox.getSelectedItem());
 
             String employee = (String) employeeListBox.getSelectedItem();
             String command = confirmButton.getText();
@@ -94,7 +93,11 @@ class ShiftChangePanel extends JPanel implements ActionListener {
                 shift = shift.replace(deletionTarget, "");
                 return shift;
             case "Add Employee":
-                return shift + ", " + employee;
+                if (shift.equals("")) {
+                    return employee;
+                } else {
+                    return shift + ", " + employee;
+                }
             default:
                 return "";
         }

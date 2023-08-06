@@ -10,8 +10,6 @@ public class Shift<Employee> {
     public Shift(String duration, ArrayList<String> employees) {
         this.duration = duration;
         this.employees = employees;
-
-        System.out.println(employees);
     }
 
     public String getDuration() {

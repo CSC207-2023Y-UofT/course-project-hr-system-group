@@ -22,7 +22,6 @@ public class ShiftChangeScreen extends JPanel {
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         this.add(title);
         this.add(tabbedPane);
-        System.out.println("ShiftChangeScreen running.");
     }
 
 }

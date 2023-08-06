@@ -4,11 +4,9 @@ import drivers.ScheduleUI;
 import entities.Employee;
 import entities.HRSystem;
 import entities.Schedule;
-import usecases.AddEmployee;
-import usecases.CreateSchedule;
-import usecases.RemoveEmployee;
-import usecases.ScheduleDataParser;
+import usecases.*;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,7 +30,6 @@ public class ScheduleController implements CreateSchedule, RemoveEmployee, AddEm
 
     public void openUI() {
         this.scheduleUI.createUI(this.parsedData);
-        System.out.println("Opened Schedule UI.");
     }
 
     public static void modifyShift(String str, int dayIndex, int shiftIndex, String employee) {
@@ -54,6 +51,17 @@ public class ScheduleController implements CreateSchedule, RemoveEmployee, AddEm
             allEmployeesID.add(employee.getId());
         }
         return allEmployeesID;
+    }
+
+    public static void callFileWriter(String[][] data) {
+        try {
+            String fileName = "ScheduleData.csv";
+            String currentWorkingDirectory = System.getProperty("user.dir");
+            String filePath = currentWorkingDirectory + "\\src\\main\\java\\resources\\" + fileName;
+            ScheduleFileWriter.writeCSV(data, filePath);
+        } catch (IOException e) {
+            System.out.println("Failed to open and write to the schedule .csv file.");
+        }
     }
 
 }

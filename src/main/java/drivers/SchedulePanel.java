@@ -1,5 +1,7 @@
 package drivers;
 
+import interfaceadapters.ScheduleController;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -21,12 +23,10 @@ public class SchedulePanel extends JPanel implements ActionListener {
         title.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         //Buttons
-        JButton newShift = new JButton("New Shift");
-        JButton removeShift = new JButton("Remove Shift");
+        JButton saveButton = new JButton("Save Schedule to File");
 
         JPanel buttons = new JPanel();
-        buttons.add(newShift);
-        buttons.add(removeShift);
+        buttons.add(saveButton);
 
         //Table
         this.data = data;
@@ -56,7 +56,6 @@ public class SchedulePanel extends JPanel implements ActionListener {
                     JTable target = (JTable) e.getSource();
                     int row = target.getSelectedRow();
                     int column = target.getSelectedColumn();
-                    System.out.println(row + " and " + column);
 
                     if (row >= 0 && column > 0) {
                         ShiftChangeScreen shiftChangeScreen = new ShiftChangeScreen(row, column, data);
@@ -70,8 +69,7 @@ public class SchedulePanel extends JPanel implements ActionListener {
                 }
             }
         });
-        newShift.addActionListener(this);
-        removeShift.addActionListener(this);
+        saveButton.addActionListener(this);
     }
 
     public static void deleteNewFrame(){
@@ -81,7 +79,7 @@ public class SchedulePanel extends JPanel implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        System.out.println("Click " + e.getActionCommand());
+        ScheduleController.callFileWriter(data);
     }
 
 
