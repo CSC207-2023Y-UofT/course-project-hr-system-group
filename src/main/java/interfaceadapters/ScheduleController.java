@@ -10,6 +10,10 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * ScheduleController.java
+ * Class for the ScheduleController.
+ */
 public class ScheduleController implements CreateSchedule, RemoveEmployee, AddEmployee {
 
     static Schedule schedule;
@@ -28,6 +32,10 @@ public class ScheduleController implements CreateSchedule, RemoveEmployee, AddEm
         this.scheduleUI = scheduleUI;
     }
 
+    /**
+     * openUI
+     * Calls createUI from the scheduleUI with the String[][] parsedData.
+     */
     public void openUI() {
         this.scheduleUI.createUI(this.parsedData);
     }
@@ -44,6 +52,11 @@ public class ScheduleController implements CreateSchedule, RemoveEmployee, AddEm
         }
     }
 
+    /**
+     * getAllEmployeesID
+     * Gets an ArrayList<String> of all the employee IDs from HRSystem hrSystem.
+     * @return ArrayList<String>, ArrayList of all the employee IDs.
+     */
     public static ArrayList<String> getAllEmployeesID() {
         ArrayList<Employee> allEmployees = hrSystem.getEmployees();
         ArrayList<String> allEmployeesID = new ArrayList<>();
@@ -53,6 +66,11 @@ public class ScheduleController implements CreateSchedule, RemoveEmployee, AddEm
         return allEmployeesID;
     }
 
+    /**
+     * addEmployee
+     * Calls writeCSV from the ScheduleFileWriter.
+     * @param data, String[][] representation of the Schedule data.
+     */
     public static void callFileWriter(String[][] data) {
         try {
             String fileName = "ScheduleData.csv";

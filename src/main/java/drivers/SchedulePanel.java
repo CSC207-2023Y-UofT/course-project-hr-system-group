@@ -9,6 +9,10 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
+/**
+ * SchedulePanel.java
+ * Class for the JPanel SchedulePanel, the main UI Panel of the schedule feature.
+ */
 public class SchedulePanel extends JPanel implements ActionListener {
 
     final String[] COLUMNS = {"SHIFT", "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"};
@@ -72,11 +76,22 @@ public class SchedulePanel extends JPanel implements ActionListener {
         saveButton.addActionListener(this);
     }
 
+
+    /**
+     * deleteNewFrame
+     * Deletes newFrame and updates the SchedulePanel UI.
+     */
     public static void deleteNewFrame(){
         newFrame.dispose();
         table.updateUI();
     }
 
+
+    /**
+     * actionPerformed
+     * Calls callFileWriter() from ScheduleController with SchedulePanel's current data.
+     * @param e, ActionEvent from pressing JButton saveButton.
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         ScheduleController.callFileWriter(data);

@@ -4,8 +4,18 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 
+/**
+ * ScheduleFileWriter.java
+ * Class for ScheduleFileWriter.
+ */
 public class ScheduleFileWriter {
 
+    /**
+     * readCSV
+     * Writes to the .csv at filePath given String[][] data.
+     * @param data, String[][] representation of the Schedule data.
+     * @param filePath, String for the file path of .csv to be written to.
+     */
     public static void writeCSV(String[][] data, String filePath) throws IOException {
         FileWriter writer = new FileWriter(filePath);
         ArrayList<String[]> parsedData = parseForCSV(data);
@@ -23,6 +33,12 @@ public class ScheduleFileWriter {
         writer.close();
     }
 
+    /**
+     * parseForCSV
+     * Parses the String[][] data to ArrayList<String[]> and adds proper formatting for writing to .csv.
+     * @param data, String[][] representation of the Schedule data.
+     * @return ArrayList<String[]> representation of teh Schedule data.
+     */
     public static ArrayList<String[]> parseForCSV(String[][] data) {
         ArrayList<String[]> parsedData = new ArrayList<>();
         for (String[] lst : data) {

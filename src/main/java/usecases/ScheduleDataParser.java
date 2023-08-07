@@ -3,6 +3,10 @@ package usecases;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * ScheduleParser.java
+ * Class for ScheduleDataParser.
+ */
 public class ScheduleDataParser {
 
     private final String KEYWORD = "SHIFT: ";
@@ -12,6 +16,7 @@ public class ScheduleDataParser {
     public ScheduleDataParser(List<String[]> rawData) {
         ArrayList<String> values = new ArrayList<>();
 
+        // Parses data into an ArrayList<String[]>, without formatting, upon initialization of ScheduleDataParser.
         for (String[] line : rawData) {
             if (shiftLine) {
                 values.add(line[0].replace(KEYWORD, ""));
@@ -25,6 +30,11 @@ public class ScheduleDataParser {
         }
     }
 
+    /**
+     * getParsedDataArray
+     * Returns the parsedData as a String[][] and strips all "" from the data.
+     * @return String[][], representation of the Schedule data.
+     */
     public String[][] getParsedDataArray() {
         String[][] newLst = new String[this.parsedData.size()][];
         for (int i = 0; i < this.parsedData.size(); i++) {
@@ -40,6 +50,12 @@ public class ScheduleDataParser {
         return newLst;
     }
 
+    /**
+     * toArrayList
+     * Converts a given String[] to an ArrayList<String>.
+     * @param lst, String[] to be converted to an ArrayList<String>.
+     * @return ArrayList<String> copy of String[] lst.
+     */
     public ArrayList<String> toArrayList(String[] lst) {
         ArrayList<String> newLst = new ArrayList<>();
         for (String str : lst) {
@@ -48,6 +64,12 @@ public class ScheduleDataParser {
         return newLst;
     }
 
+    /**
+     * toArray
+     * Converts a given ArrayList<String> to a String[].
+     * @param lst, ArrayList<String> to be converted to a String[].
+     * @return String[] copy of ArrayList<String> lst.
+     */
     public String[] toArray(ArrayList<String> lst) {
         String[] newLst = new String[lst.size()];
         for (int i = 0; i < lst.size(); i++) {

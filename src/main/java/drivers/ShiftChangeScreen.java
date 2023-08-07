@@ -3,6 +3,10 @@ package drivers;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * ShiftChangeScreen.java
+ * Class for the JPanel ShiftChangeScreen, contains a TabbedPane for each panel to add or remove an employee.
+ */
 public class ShiftChangeScreen extends JPanel {
     ShiftChangePanel addEmployeePanel;
     ShiftChangePanel removeEmployeePanel;

@@ -9,6 +9,10 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Main.java
+ * Temporary Main class for Schedule feature.
+ */
 public class Main {
 
     public static void main(String[] args) {

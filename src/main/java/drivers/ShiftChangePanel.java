@@ -8,6 +8,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
+/**
+ * ShiftChangePanel.java
+ * Class for the JPanel ShiftChangePanel, the UI for adding and removing employees from a schedule shift.
+ */
 class ShiftChangePanel extends JPanel implements ActionListener {
 
     JComboBox<String> employeeListBox;
@@ -50,7 +54,7 @@ class ShiftChangePanel extends JPanel implements ActionListener {
         buttons.add(confirmButton);
 
 
-        //Add components to this panel.
+        //Add components to the panel.
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         this.add(title);
         this.add(employeeListBox);
@@ -62,6 +66,12 @@ class ShiftChangePanel extends JPanel implements ActionListener {
         confirmButton.addActionListener(this);
     }
 
+    /**
+     * actionPerformed
+     * Calls modifyShift from ScheduleController with the currently selected item in JComboBox employeeListBox, then
+     * updates the data accordingly in the Schedule UI and closes this ShiftChangePanel.
+     * @param e, ActionEvent from pressing JButton confirmButton.
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == confirmButton) {
@@ -80,6 +90,13 @@ class ShiftChangePanel extends JPanel implements ActionListener {
         }
     }
 
+    /**
+     * updateData
+     * Calls callFileWriter from ScheduleController with SchedulePanel's current data.
+     * @param command, String for a command to "Add" or "Remove" an employee.
+     * @param employee, String for the ID of the employee to be added or removed.
+     * @param shift, String for the current employee state of the selected shift, to be modified.
+     */
     public String updateData(String command, String employee, String shift) {
         switch(command) {
             case "Remove Employee":
