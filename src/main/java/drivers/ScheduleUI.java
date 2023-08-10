@@ -1,5 +1,7 @@
 package drivers;
 
+import interfaceadapters.ScheduleController;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -14,7 +16,7 @@ public class ScheduleUI {
      * Creates and sets the JFrames and JPanels for the Schedule UI.
      * @param data, String[][] representation of the Schedule data.
      */
-    public void createUI(String[][] data) {
+    public void createUI(String[][] data, ScheduleController scheduleController) {
         JFrame application = new JFrame("HR System");
         application.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
@@ -22,7 +24,7 @@ public class ScheduleUI {
         JPanel screens = new JPanel(cardLayout);
         application.add(screens);
 
-        SchedulePanel schedulePanel = new SchedulePanel(data);
+        SchedulePanel schedulePanel = new SchedulePanel(data, scheduleController);
         schedulePanel.setOpaque(true);
         application.setContentPane(schedulePanel);
 

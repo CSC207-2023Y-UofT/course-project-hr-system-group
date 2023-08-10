@@ -14,19 +14,21 @@ import java.util.ArrayList;
  */
 class ShiftChangePanel extends JPanel implements ActionListener {
 
-    JComboBox<String> employeeListBox;
-    int row, column;
-    JButton confirmButton;
-    boolean add;
-    String[] selectionEmployees;
-    String[][] data;
+    private JComboBox<String> employeeListBox;
+    private int row, column;
+    private JButton confirmButton;
+    private boolean add;
+    private String[] selectionEmployees;
+    private String[][] data;
+    private ScheduleController scheduleController;
 
-    public ShiftChangePanel(boolean add, int row, int column, String[][] data) {
+    public ShiftChangePanel(boolean add, int row, int column, String[][] data, ScheduleController scheduleController) {
 
         this.data = data;
         this.row = row;
         this.column = column;
         this.add = add;
+        this.scheduleController = scheduleController;
 
         //Title
         JLabel title = new JLabel("Select an employee:");
@@ -34,7 +36,7 @@ class ShiftChangePanel extends JPanel implements ActionListener {
 
         //Combo Box and Button
         if (add) {
-            ArrayList<String> allEmployeesID = ScheduleController.getAllEmployeesID();
+            ArrayList<String> allEmployeesID = this.scheduleController.getAllEmployeesID();
             String[] overlapEmployees = data[row][column].split(", ");
             for (String employee : overlapEmployees) {
                 allEmployeesID.remove(employee);
@@ -82,7 +84,7 @@ class ShiftChangePanel extends JPanel implements ActionListener {
             int shiftIndex = this.row;
             String shift = this.data[shiftIndex][this.column];
 
-            ScheduleController.modifyShift(command, dayIndex, shiftIndex, employee);
+            this.scheduleController.modifyShift(command, dayIndex, shiftIndex, employee);
 
             this.data[shiftIndex][this.column] = updateData(command, employee, shift);
 

@@ -1,7 +1,6 @@
 package usecases;
 
 import entities.Schedule;
-import entities.Shift;
 
 /**
  * AddEmployee.java
@@ -17,10 +16,6 @@ public interface AddEmployee {
      * @param shiftIndex, int for index of shift to be modified.
      * @param employee, String for employee to be added.
      */
-    static void addEmployee(Schedule schedule, int dayIndex, int shiftIndex, String employee) {
-
-        Shift shift = schedule.getShift(shiftIndex);
-        shift.addEmployee(dayIndex, employee);
-    }
+    void addEmployee(Schedule schedule, int dayIndex, int shiftIndex, String employee);
 
 }

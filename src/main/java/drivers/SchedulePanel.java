@@ -15,12 +15,13 @@ import java.awt.event.MouseEvent;
  */
 public class SchedulePanel extends JPanel implements ActionListener {
 
-    final String[] COLUMNS = {"SHIFT", "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"};
-    String[][] data;
-    static JTable table;
-    static JFrame newFrame = new JFrame();
+    private final String[] COLUMNS =
+            {"SHIFT", "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"};
+    private String[][] data;
+    private static JTable table;
+    private static JFrame newFrame = new JFrame();
 
-    public SchedulePanel(String[][] data) {
+    public SchedulePanel(String[][] data, ScheduleController scheduleController) {
 
         //Title
         JLabel title = new JLabel("SCHEDULE");
@@ -62,7 +63,8 @@ public class SchedulePanel extends JPanel implements ActionListener {
                     int column = target.getSelectedColumn();
 
                     if (row >= 0 && column > 0) {
-                        ShiftChangeScreen shiftChangeScreen = new ShiftChangeScreen(row, column, data);
+                        ShiftChangeScreen shiftChangeScreen = new ShiftChangeScreen(row, column, data,
+                                scheduleController);
                         shiftChangeScreen.setOpaque(true);
                         newFrame.setContentPane(shiftChangeScreen);
 
