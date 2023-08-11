@@ -14,6 +14,20 @@ public class Schedule {
     }
 
     /**
+     * shiftsContainsEmployee
+     * Returns whether this Schedule has a Shift that contains employee with String id.
+     * @param id, String for id of employee to be compared.
+     */
+    public boolean shiftsContainsEmployee(String id) {
+        for (Shift shift : shifts) {
+            if (shift.containsEmployee(id)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
      * getShift
      * Getter for a shift in ArrayList<Shift> shifts with a given index.
      * @param index, int for index of shift to be retrieved.

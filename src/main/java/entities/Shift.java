@@ -17,6 +17,20 @@ public class Shift<Employee> {
     }
 
     /**
+     * containsEmployee
+     * Returns whether this Shift contains and Employee with String id.
+     * @param id, String for id of employee to be compared.
+     */
+    public boolean containsEmployee(String id) {
+        for (String compareId : employees) {
+            if (id.equals(compareId)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
      * addEmployee
      * Adds an employee ArrayList<String> employees at the given index.
      * @param dayIndex, int for index employee is to be added to.

@@ -1,6 +1,7 @@
 package drivers;
 
 import interfaceadapters.ScheduleController;
+import usecases.DeleteEmployee;
 
 import javax.swing.*;
 import java.awt.*;
@@ -18,20 +19,27 @@ public class SchedulePanel extends JPanel implements ActionListener {
     private final String[] COLUMNS =
             {"SHIFT", "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"};
     private String[][] data;
+    private ScheduleController scheduleController;
     private static JTable table;
     private static JFrame newFrame = new JFrame();
+    private JButton saveButton, createEmployee, deleteEmployee;
 
     public SchedulePanel(String[][] data, ScheduleController scheduleController) {
+        this.scheduleController = scheduleController;
 
         //Title
         JLabel title = new JLabel("SCHEDULE");
         title.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         //Buttons
-        JButton saveButton = new JButton("Save Schedule to File");
+        saveButton = new JButton("Save Schedule to File");
+        createEmployee = new JButton("Create New Employee");
+        deleteEmployee = new JButton("Delete Employee");
 
         JPanel buttons = new JPanel();
         buttons.add(saveButton);
+        buttons.add(createEmployee);
+        buttons.add(deleteEmployee);
 
         //Table
         this.data = data;
@@ -43,7 +51,6 @@ public class SchedulePanel extends JPanel implements ActionListener {
         };
         table.setPreferredScrollableViewportSize(new Dimension(1000, 150));
         table.setFillsViewportHeight(true);
-
 
         //Create the scroll pane and add the table to it.
         JScrollPane scrollPane = new JScrollPane(table);
@@ -76,6 +83,8 @@ public class SchedulePanel extends JPanel implements ActionListener {
             }
         });
         saveButton.addActionListener(this);
+        createEmployee.addActionListener(this);
+        deleteEmployee.addActionListener(this);
     }
 
 
@@ -96,7 +105,28 @@ public class SchedulePanel extends JPanel implements ActionListener {
      */
     @Override
     public void actionPerformed(ActionEvent e) {
-        ScheduleController.callFileWriter(data);
+        if (e.getSource() == saveButton) {
+            System.out.println("Writing to file.");
+            ScheduleController.callFileWriter(data);
+        }
+        if (e.getSource() == createEmployee) {
+            CreateEmployeePanel createEmployeePanel = new CreateEmployeePanel(this.scheduleController);
+            createEmployeePanel.setOpaque(true);
+            newFrame.setContentPane(createEmployeePanel);
+
+            createEmployeePanel.setPreferredSize(new Dimension(500, 200));
+            newFrame.pack();
+            newFrame.setVisible(true);
+        }
+        if (e.getSource() == deleteEmployee) {
+            DeleteEmployeePanel deleteEmployeePanel = new DeleteEmployeePanel(this.scheduleController);
+            deleteEmployeePanel.setOpaque(true);
+            newFrame.setContentPane(deleteEmployeePanel);
+
+            deleteEmployeePanel.setPreferredSize(new Dimension(500, 200));
+            newFrame.pack();
+            newFrame.setVisible(true);
+        }
     }
 
 

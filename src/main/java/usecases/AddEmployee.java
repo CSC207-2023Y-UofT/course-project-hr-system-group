@@ -17,5 +17,4 @@ public interface AddEmployee {
      * @param employee, String for employee to be added.
      */
     void addEmployee(Schedule schedule, int dayIndex, int shiftIndex, String employee);
-
 }

@@ -14,11 +14,11 @@ public class HRSystem {
         return this.employees;
     }
 
-    private void addEmployee(Employee employee) {
+    public void addEmployee(Employee employee) {
         this.employees.add(employee);
     }
 
-    private void removeEmployee(String id) {
+    public void removeEmployee(String id) {
         for (Employee employee : employees) {
             if (employee.getId() == id) {
                 employees.remove(employee);

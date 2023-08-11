@@ -17,5 +17,4 @@ public interface RemoveEmployee {
      * @param employee, String for employee to be removed.
      */
     void removeEmployee(Schedule schedule, int dayIndex, int shiftIndex, String employee);
-
 }

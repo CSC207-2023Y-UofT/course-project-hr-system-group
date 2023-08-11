@@ -15,7 +15,7 @@ import java.util.List;
  * ScheduleController.java
  * Class for the ScheduleController.
  */
-public class ScheduleController implements CreateSchedule, RemoveEmployee, AddEmployee {
+public class ScheduleController implements CreateSchedule, RemoveEmployee, AddEmployee, CreateEmployee, DeleteEmployee {
 
     private static Schedule schedule;
     private ScheduleUI scheduleUI;
@@ -146,5 +146,40 @@ public class ScheduleController implements CreateSchedule, RemoveEmployee, AddEm
             schedule.addShift(shift);
         }
         return schedule;
+    }
+
+    /**
+     * createEmployee
+     * Attempts to create an employee in the HRSystem given an ID  and name.
+     * @param newId, String ID of employee to be created.
+     * @param name, String name of employee to be created.
+     * @return boolean, true if Employee is successfully created, false otherwise.
+     */
+    @Override
+    public boolean createEmployee(String newId, String name) {
+        ArrayList<String> employeeIDs = getAllEmployeesID();
+        for (String id : employeeIDs) {
+            if (newId.equals(id)) {
+                return false;
+            }
+        }
+        Employee employee = new Employee(newId, name);
+        hrSystem.addEmployee(employee);
+        return true;
+    }
+
+    /**
+     * deleteEmployee
+     * Deletes an employee in the HRSystem.
+     * @param id, String ID of employee to be deleted.
+     * @return boolean, true if Employee is successfully deleted, false otherwise.
+     */
+    @Override
+    public boolean deleteEmployee(String id) {
+        if (schedule.shiftsContainsEmployee(id)) {
+            return false;
+        }
+        hrSystem.removeEmployee(id);
+        return true;
     }
 }
