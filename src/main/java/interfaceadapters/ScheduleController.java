@@ -1,12 +1,12 @@
 package interfaceadapters;
 
-import drivers.ScheduleUI;
+import drivers.scheduleui.ScheduleUI;
 import entities.Employee;
 import entities.HRSystem;
 import entities.Schedule;
 import entities.Shift;
-import usecases.modifyemployees.CreateEmployee;
-import usecases.modifyemployees.DeleteEmployee;
+import usecases.modifyhrsystem.CreateEmployee;
+import usecases.modifyhrsystem.DeleteEmployee;
 import usecases.modifyfiles.ScheduleDataParser;
 import usecases.modifyfiles.ScheduleFileReader;
 import usecases.modifyfiles.ScheduleFileWriter;
@@ -72,6 +72,15 @@ public class ScheduleController implements CreateSchedule, RemoveEmployee, AddEm
             allEmployeesID.add(employee.getId());
         }
         return allEmployeesID;
+    }
+
+    /**
+     * getSchedule
+     * Gets this ScheduleController's schedule.
+     * @return Schedule, this ScheduleController's schedule.
+     */
+    public Schedule getSchedule() {
+        return this.schedule;
     }
 
     /**
@@ -157,7 +166,8 @@ public class ScheduleController implements CreateSchedule, RemoveEmployee, AddEm
 
     /**
      * createEmployee
-     * Attempts to create an employee in the HRSystem given an ID  and name.
+     * Create an employee in the HRSystem given an ID  and name. If there already exists an employee with the inputted
+     * ID, does not create said employee and returns false.
      * @param newId, String ID of employee to be created.
      * @param name, String name of employee to be created.
      * @return boolean, true if Employee is successfully created, false otherwise.
@@ -177,7 +187,8 @@ public class ScheduleController implements CreateSchedule, RemoveEmployee, AddEm
 
     /**
      * deleteEmployee
-     * Deletes an employee in the HRSystem.
+     * Deletes an employee in the HRSystem. If the employee is still scheduled in shifts, does not delete said employee
+     * and returns false.
      * @param id, String ID of employee to be deleted.
      * @return boolean, true if Employee is successfully deleted, false otherwise.
      */
@@ -189,4 +200,5 @@ public class ScheduleController implements CreateSchedule, RemoveEmployee, AddEm
         hrSystem.removeEmployee(id);
         return true;
     }
+
 }

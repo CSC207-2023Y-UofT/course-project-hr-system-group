@@ -1,4 +1,4 @@
-package usecases.modifyemployees;
+package usecases.modifyhrsystem;
 
 public interface CreateEmployee {
 

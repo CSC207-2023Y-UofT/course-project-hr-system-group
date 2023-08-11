@@ -1,5 +1,7 @@
-package drivers;
+package drivers.scheduleui;
 
+import drivers.hrsystemui.CreateEmployeePanel;
+import drivers.hrsystemui.DeleteEmployeePanel;
 import interfaceadapters.ScheduleController;
 
 import javax.swing.*;

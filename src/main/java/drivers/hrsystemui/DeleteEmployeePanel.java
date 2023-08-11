@@ -1,5 +1,6 @@
-package drivers;
+package drivers.hrsystemui;
 
+import drivers.scheduleui.SchedulePanel;
 import interfaceadapters.ScheduleController;
 
 import javax.swing.*;

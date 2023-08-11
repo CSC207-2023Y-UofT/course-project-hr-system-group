@@ -1,10 +1,10 @@
 package drivers;
 
-import entities.Employee;
+import drivers.scheduleui.ScheduleUI;
 import entities.HRSystem;
+import interfaceadapters.HRSystemController;
 import interfaceadapters.ScheduleController;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -14,18 +14,20 @@ import java.util.List;
 public class Main {
 
     public static void main(String[] args) {
-        // Sample HRSystem
-        ArrayList<Employee> employees = new ArrayList<>();
-        employees.add(new Employee("001", "name"));
-        employees.add(new Employee("002", "name"));
-        employees.add(new Employee("003", "name"));
-        employees.add(new Employee("004", "name"));
-        employees.add(new Employee("005", "name"));
-        HRSystem hrSystem = new HRSystem(employees);
+        HRSystemController hrSystemController = new HRSystemController();
+        HRSystem hrSystem = hrSystemController.createHRSystem();
 
         ScheduleUI scheduleUI = new ScheduleUI();
         List<String[]> data = ScheduleController.callFileReader();
         ScheduleController scheduleController = new ScheduleController(hrSystem, scheduleUI, data);
+
+        // Sample HRSystem
+        scheduleController.createEmployee("001", "name");
+        scheduleController.createEmployee("002", "name");
+        scheduleController.createEmployee("003", "name");
+        scheduleController.createEmployee("004", "name");
+        scheduleController.createEmployee("005", "name");
+
         scheduleController.openUI();
     }
 

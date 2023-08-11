@@ -1,5 +1,6 @@
-package drivers;
+package drivers.hrsystemui;
 
+import drivers.scheduleui.SchedulePanel;
 import interfaceadapters.ScheduleController;
 
 import javax.swing.*;
@@ -68,6 +69,7 @@ public class CreateEmployeePanel extends JPanel implements ActionListener {
         if (!scheduleController.createEmployee(id, name)) {
             JOptionPane.showMessageDialog(this,
                     "Invalid input. Employee with ID already exists.");
+            return;
         }
         JOptionPane.showMessageDialog(this, "New employee created.");
         SchedulePanel.deleteNewFrame();

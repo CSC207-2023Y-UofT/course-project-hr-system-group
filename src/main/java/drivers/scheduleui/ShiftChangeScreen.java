@@ -1,4 +1,4 @@
-package drivers;
+package drivers.scheduleui;
 
 import interfaceadapters.ScheduleController;
 
