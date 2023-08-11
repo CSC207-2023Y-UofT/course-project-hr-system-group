@@ -8,8 +8,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 /**
- * ShiftChangeScreen.java
- * Class for the JPanel ShiftChangeScreen, contains a TabbedPane for each panel to add or remove an employee.
+ * CreateEmployeePanel.java
+ * Class for the JPanel CreateEmployeePanel, prompts the user for input to create a new Employee in the HRSystem.
  */
 public class CreateEmployeePanel extends JPanel implements ActionListener {
 

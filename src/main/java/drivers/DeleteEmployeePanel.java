@@ -9,8 +9,8 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 /**
- * ShiftChangeScreen.java
- * Class for the JPanel ShiftChangeScreen, contains a TabbedPane for each panel to add or remove an employee.
+ * DeleteEmployeePanel.java
+ * Class for the JPanel DeleteEmployeePanel, prompts the user for the ID of an Employee to delete from the HRSystem.
  */
 public class DeleteEmployeePanel extends JPanel implements ActionListener {
 

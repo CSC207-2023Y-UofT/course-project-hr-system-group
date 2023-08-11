@@ -1,4 +1,4 @@
-package usecases;
+package usecases.modifyfiles;
 
 import java.io.BufferedReader;
 import java.io.FileReader;

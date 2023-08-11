@@ -1,7 +1,6 @@
 package drivers;
 
 import interfaceadapters.ScheduleController;
-import usecases.DeleteEmployee;
 
 import javax.swing.*;
 import java.awt.*;
@@ -100,8 +99,11 @@ public class SchedulePanel extends JPanel implements ActionListener {
 
     /**
      * actionPerformed
-     * Calls callFileWriter() from ScheduleController with SchedulePanel's current data.
-     * @param e, ActionEvent from pressing JButton saveButton.
+     * Calls the appropriate action depending on JButton pressed.
+     * saveButton pressed: Attempts to write schedule data to .csv file.
+     * createEmployee pressed: JPanel to prompt user to create a new employee is opened.
+     * deleteEmployee pressed: JPanel to prompt user to delete an existing employee is opened.
+     * @param e, ActionEvent from pressing JButton saveButton, createEmployee or deleteEmployee.
      */
     @Override
     public void actionPerformed(ActionEvent e) {

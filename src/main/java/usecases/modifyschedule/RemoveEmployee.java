@@ -1,4 +1,4 @@
-package usecases;
+package usecases.modifyschedule;
 
 import entities.Schedule;
 
